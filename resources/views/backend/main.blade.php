@@ -252,7 +252,7 @@
       </li><!-- End Register Page Nav --> --}}
 
       <li class="nav-item">
-        <a class="nav-link {{ ($title ==="Laporan") ? '' : 'collapsed' }}" href="/laporan">
+        <a class="nav-link {{ ($title ==="Laporan Keuangan") ? '' : 'collapsed' }}" href="/laporan">
 
           <i class="bi bi-file-earmark"></i>
           <span>Laporan </span>

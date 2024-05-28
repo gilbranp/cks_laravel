@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\KemasanController;
+use App\Models\User;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\ArtikelController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FrontController;
+use App\Http\Controllers\KemasanController;
 use App\Http\Controllers\LaporanController;
-use App\Models\User;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +39,8 @@ Route::middleware(['guest'])->group(function (){
 });
 
 Route::get('/',[FrontController::class,'index']);
+
+Route::get('/email', function () {
+    Mail::to('gilbranbambimboo@gmail.com')->send(new WelcomeMail());
+    return new WelcomeMail();
+});

@@ -168,11 +168,11 @@
                     <tr>
                         <th scope="row">1</th>
                         <td>den</td>
-                        <td>d</td>
-                        <td>d</td>
-                        <td>p</td>
-                        <td>p</td>
-                        <td>p</td>
+                        <td>02-20-2024</td>
+                        <td>kerjasama cks</td>
+                        <td>20000</td>
+                        <td>0</td>
+                        <td>1000000</td>
                         
                         {{-- <td>{{ $user->created_at }}</td> --}}
                         <td class="text-center">

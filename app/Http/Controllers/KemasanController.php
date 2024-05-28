@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kemasan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class KemasanController extends Controller
 {
@@ -105,13 +106,31 @@ class KemasanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kemasan $artikel)
+    public function destroy($id)
     {
-        $gambarPath = public_path('images/kemasan/' . $artikel->foto);
-    if (file_exists($gambarPath)) {
-        unlink($gambarPath);
-    }
-    $artikel->delete();
-    return redirect()->route('artikel.index')->with('sukses', 'Data berhasil dihapus!');
+        try {
+            $artikel = Kemasan::findOrFail($id); // Pastikan artikel ditemukan
+    
+            $gambarPath = public_path('images/kemasan/' . $artikel->foto);
+    
+            if (is_file($gambarPath)) {
+                if (file_exists($gambarPath)) {
+                    unlink($gambarPath);
+                    Log::info('File berhasil dihapus: ' . $gambarPath);
+                } else {
+                    Log::warning('File tidak ditemukan: ' . $gambarPath);
+                }
+            } else {
+                Log::warning('Path bukan file: ' . $gambarPath);
+            }
+    
+            $artikel->delete();
+            Log::info('Artikel berhasil dihapus: ID ' . $id);
+    
+            return redirect()->route('sahabat.index')->with('sukses', 'Data berhasil dihapus!');
+        } catch (\Exception $e) {
+            Log::error('Error menghapus data: ' . $e->getMessage());
+            return redirect()->route('sahabat.index')->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
     }
 }

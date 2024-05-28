@@ -29,6 +29,7 @@
 <body>
   <!-- Navbar start -->
   <nav class="navbar">
+    <img style="height: 50px" src="assets/img/logo.png" alt="">
     <a href="#" class="navbar-logo">Koperasi CKS <span>Banjarnegara</span></a>
 
     <div class="navbar-nav">
@@ -90,7 +91,8 @@
     <!-- <div class="mask-container"> -->
     <div>
       <main class="content">
-        <h1>Selamat datang <br> Koperasi Pemasaran <br><span>CKS Banjarnegara</span></h1>
+        <marquee><h1>Selamat datang</h1></marquee>
+        {{-- <h1>Selamat datang <br> Koperasi Pemasaran <br><span>CKS Banjarnegara</span></h1> --}}
         <!-- <p style="color: aliceblue;">Koperasi Pemasaran Cipta Karya Sejahtera</p> -->
       </main>
     </div>
@@ -201,8 +203,9 @@
         </div>
         
         <div class="product-image">
-          <img style="width: 300px;height:300px" src="images/ukm/{{ $ukms->foto }}" alt="Product 1">
+          <img class="img-fluid" style="width: 100%; height: auto; object-fit: cover;" src="images/ukm/{{ $ukms->foto }}" alt="Product 1">
         </div>
+        
         <div class="product-content">
           <h3>{{ $ukms->nama }}</h3>
           <div class="product-stars">
@@ -215,6 +218,7 @@
           <!-- <div class="product-price">IDR 30K <span>IDR 55K</span></div> -->
         </div>
       </div>
+      
       @endforeach
       {{-- end produk --}}
 
@@ -230,27 +234,29 @@
 
       {{-- konten --}}
         @foreach ($kemasan as $kemasans)
-      <div class="product-card">
-        <div class="product-icons" id="produk1">
-          <a href="{{ $kemasans->url }}" target="_blank"><i data-feather="shopping-cart"></i></a>
-          <!-- <a href="#" id="shopping-cart-button" class="item-detail-button"><i data-feather="eye"></i></a> -->
-          {{-- <a href="detailjeli.html"><i data-feather="eye"></i></a> --}}
-        </div>
-        <div class="product-image">
-          <img style="width: 300px;height: 300px;" src="images/kemasan/{{ $kemasans->foto }}" alt="Product 1">
-        </div>
-        <div class="product-content">
-          <h3>{{ $kemasans->nama }}</h3>
-          <div class="product-stars">
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star"></i>
+        <div class="product-card">
+          <div class="product-icons" id="produk1">
+            <a href="{{ $kemasans->url }}"><i data-feather="shopping-cart"></i></a>
+            <!-- <a href="#" id="shopping-cart-button" class="item-detail-button"><i data-feather="eye"></i></a> -->
           </div>
-          <!-- <div class="product-price">IDR 30K <span>IDR 55K</span></div> -->
+          
+          <div class="product-image">
+            <img class="img-fluid" style="width: 100%; height: auto; object-fit: cover;" src="images/kemasan/{{ $kemasans->foto }}" alt="Product">
+          </div>
+          
+          <div class="product-content">
+            <h3>{{ $kemasans->nama }}</h3>
+            <div class="product-stars">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star"></i>
+            </div>
+            <!-- <div class="product-price">IDR 30K <span>IDR 55K</span></div> -->
+          </div>
         </div>
-      </div>
+        
       @endforeach
 
       {{-- end konten --}}
@@ -272,7 +278,7 @@
         width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-      <form action="process-form.php" method="post">
+      <form action="/mail" method="post">
         <div class="input-group">
           <i data-feather="user"></i>
           <input type="text" name="nama" placeholder="Nama" required>

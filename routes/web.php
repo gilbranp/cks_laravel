@@ -41,6 +41,6 @@ Route::middleware(['guest'])->group(function (){
 Route::get('/',[FrontController::class,'index']);
 
 Route::get('/email', function () {
-    Mail::to('gilbranbambimboo@gmail.com')->send(new WelcomeMail());
+    Mail::to('hosting.gilbranid@gmail.com')->send(new WelcomeMail());
     return new WelcomeMail();
 });

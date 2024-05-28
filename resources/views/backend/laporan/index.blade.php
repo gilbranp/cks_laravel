@@ -153,11 +153,10 @@
                         <th scope="col">#</th>
                         <th scope="col">Nama Anggota</th>
                         {{-- <th scope="col">Username</th> --}}
-                        <th scope="col">Tanggal Trx</th>
-                        <th scope="col">Deskripsi </th>
-                        <th scope="col">Debit (Rp)</th>
-                        <th scope="col">Kredit (Rp)</th>
-                        <th scope="col">Saldo (Rp)</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Simpanan Pokok</th>
+                        <th scope="col">Simpanan Sukarela </th>
+                        <th scope="col">Simpanan Wajib </th>
                         {{-- <th scope="col">Tanggal Ditambahkan</th> --}}
                         <th scope="col">Aksi</th>
                     </tr>
@@ -172,7 +171,6 @@
                         <td>kerjasama cks</td>
                         <td>20000</td>
                         <td>0</td>
-                        <td>1000000</td>
                         
                         {{-- <td>{{ $user->created_at }}</td> --}}
                         <td class="text-center">

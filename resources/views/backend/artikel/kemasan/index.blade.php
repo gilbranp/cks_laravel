@@ -104,7 +104,7 @@
                                 </a>
                             </div>
                             <div class="btn-group">
-                                <form action="" onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
+                                <form action="{{ route('sahabat.destroy',$artikels->id) }}" onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
                                     @csrf
                                     @method( 'DELETE')
                                     <button class="btn btn-sm btn-danger text-white show-modal mr-2">

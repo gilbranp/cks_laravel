@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Ukm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 use PhpParser\Node\Expr\Cast\String_;
 
 class ArtikelController extends Controller
@@ -15,10 +18,11 @@ class ArtikelController extends Controller
      */
     public function index()
     {
+        $kategori = Kategori::all();
         $title = 'Data UKM';
         $users = User::find(auth()->user()->id);
         $artikel = Ukm::orderBy('created_at','DESC')->get();
-        return view('backend.artikel.ukm.index',compact('users','artikel','title'));
+        return view('backend.artikel.ukm.index',compact('kategori','users','artikel','title'));
     }
 
     /**
@@ -35,12 +39,28 @@ class ArtikelController extends Controller
     public function store(Request $request)
 {
     // dd($request->all());
-    $input = $request->all();
 
+    
+    $input = $request->all();
+    $kategoriSlug = Kategori::where('id', $input['kategori_id'])->pluck('slug')->first();
+    
+    // Buat slug awal berdasarkan nama UKM atau atribut lain yang unik
+    $baseSlug = Str::slug($input['nama'] . '-' . $kategoriSlug);
+    $slug = $baseSlug;
+    $counter = 1;
+    
+    // Cek apakah slug sudah ada, jika ya tambahkan penanda unik
+    while (Ukm::where('slug', $slug)->exists()) {
+        $slug = $baseSlug . '-' . $counter;
+        $counter++;
+    }
+    
+    $input['slug'] = $slug;
+    
     if ($image = $request->file('foto')) {
         $destinationPath = public_path('images/ukm/');
         $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-
+    
         // Coba pindahkan file dan cek hasilnya
         if ($image->move($destinationPath, $profileImage)) {
             $input['foto'] = $profileImage;
@@ -51,7 +71,7 @@ class ArtikelController extends Controller
     } else {
         unset($input['foto']);
     }
-
+    
     Ukm::create($input);
     return redirect()->route('artikel.index')->with('sukses', 'Data berhasil ditambahkan');
 }
@@ -86,24 +106,33 @@ class ArtikelController extends Controller
     public function update(Request $request, string $id)
 {
     $artikel = Ukm::find($id);
+
+    $input = $request->all();
     
-        $input = $request->all();
-        if ($image = $request->file('foto')) {
-            $destinationPath = 'images/ukm/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['foto'] = "$profileImage";
+    // Periksa apakah ada file gambar baru yang diunggah
+    if ($image = $request->file('foto')) {
+        // Hapus foto lama jika ada
+        if ($artikel->foto) {
+            $oldImagePath = public_path('images/ukm/') . $artikel->foto;
+            if (File::exists($oldImagePath)) {
+                File::delete($oldImagePath);
+            }
         }
-        else{
-            unset($input['foto']);
-        }
-
-        // Update data artikel dari request
-        // $artikel->update($request->except('imgpembina'));
-        $artikel->update($input);
-        // artikel::create($input);
-
-        return redirect()->route('artikel.index')->with('sukses', 'Data berhasil diperbarui');
+    
+        // Pindahkan file gambar baru
+        $destinationPath = 'images/ukm/';
+        $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $profileImage);
+        $input['foto'] = $profileImage;
+    } else {
+        // Jika tidak ada file gambar baru, hapus foto dari input
+        unset($input['foto']);
+    }
+    
+    // Update data artikel dari request
+    $artikel->update($input);
+    
+    return redirect()->route('artikel.index')->with('sukses', 'Data berhasil diperbarui');
 }
 
 

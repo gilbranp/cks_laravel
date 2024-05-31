@@ -1,91 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sahabat Kemasan</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
-    rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css"> -->
-
-  <!-- Feather Icons -->
-  <script src="https://unpkg.com/feather-icons"></script>
-
-  <!-- My Style -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="bootstrap/bootstrap.min.css"> -->
-  <!-- <link rel="stylesheet" href="bootstrap/bootstrap.min.css"> -->
-
-
-</head>
-
-<body>
-  <!-- Navbar start -->
-  <nav class="navbar">
-    <img style="height: 50px" src="assets/img/logo.png" alt="">
-    <a href="#" class="navbar-logo">Koperasi CKS <span>Banjarnegara</span></a>
-
-    <div class="navbar-nav">
-      <a href="#home">Home</a>
-      <a href="#about">Tentang Kami</a>
-      <a href="#menu">Produk UKM</a>
-      <a href="#products">Sahabat Kemasan</a>
-      <a href="#contact">Kontak</a>
-    </div>
-
-    <div class="navbar-extra">
-      <!-- <a href="#" id="search-button"><i data-feather="search"></i></a> -->
-      <!-- <a href="#" id="shopping-cart-button"><i data-feather="shopping-cart"></i></a> -->
-      <!-- <a href="#" id="shopping-cart-button"><i data-feather="shopping-cart"></i></a> -->
-      <a id="hamburger-menu"><i data-feather="menu"></i></a>
-    </div>
-
-    <!-- Search Form start
-    <div class="search-form">
-      <input type="search" id="search-box" placeholder="search here...">
-      <label for="search-box"><i data-feather="search"></i></label>
-    </div> -->
-    <!-- Search Form end -->
-
-    <!-- Shopping Cart start -->
-    <div class="shopping-cart">
-      <div class="cart-item">
-        <img src="img/products/1.jpg" alt="Product 1">
-        <div class="item-detail">
-          <h3>Product 1</h3>
-          <div class="item-price">IDR 30K</div>
-        </div>
-        <i data-feather="trash-2" class="remove-item"></i>
-      </div>
-      <div class="cart-item">
-        <img src="img/products/1.jpg" alt="Product 1">
-        <div class="item-detail">
-          <h3>Product 1</h3>
-          <div class="item-price">IDR 30K</div>
-        </div>
-        <i data-feather="trash-2" class="remove-item"></i>
-      </div>
-      <div class="cart-item">
-        <img src="img/products/1.jpg" alt="Product 1">
-        <div class="item-detail">
-          <h3>Product 1</h3>
-          <div class="item-price">IDR 30K</div>
-        </div>
-        <i data-feather="trash-2" class="remove-item"></i>
-      </div>
-    </div>
-    <!-- Shopping Cart end -->
-
-  </nav>
-  <!-- Navbar end -->
-
+  @extends('frontend.main')
+  @section('konten')
   <!-- Hero Section start -->
   <section class="hero" id="home">
     <!-- <div class="mask-container"> -->
@@ -195,19 +109,19 @@
     <div class="row">
 
       {{-- ini produk --}}
-      @foreach ($ukm as $ukms)
+      @foreach ($kategori as $kategoris)
       <div class="product-card">
         <div class="product-icons" id="produk1">
-          <a href="{{ $ukms->url }}"><i data-feather="shopping-cart"></i></a>
-          <!-- <a href="#" id="shopping-cart-button" class="item-detail-button"><i data-feather="eye"></i></a> -->
+          <a href="{{ $kategoris->url }}"><i data-feather="shopping-cart"></i></a>
+           <a href="/kategori/{{ $kategoris->slug }}" id="shopping-cart-button" class="item-detail-button"><i data-feather="eye"></i></a> 
         </div>
         
         <div class="product-image">
-          <img class="img-fluid" style="width: 100%; height: auto; object-fit: cover;" src="images/ukm/{{ $ukms->foto }}" alt="Product 1">
+          <img class="img-fluid" style="width: 100%; 400: auto; object-fit: cover;" src="{{ asset('images/kategoriukm/'. $kategoris->foto) }}" alt="Product 1">
         </div>
         
         <div class="product-content">
-          <h3>{{ $ukms->nama }}</h3>
+          <h3>{{ $kategoris->nama }}</h3>
           <div class="product-stars">
             <i data-feather="star" class="star-full"></i>
             <i data-feather="star" class="star-full"></i>
@@ -315,26 +229,7 @@
 
   <!-- Contact Section end -->
 
-  <!-- Footer start -->
-  <footer>
-    <div class="socials">
-      <a href="https://www.instagram.com/sahabat.kemasan?igsh=OGQ5ZDc2ODk2ZA=="><i data-feather="instagram"></i></a>
-      <a href="#"><i data-feather="twitter"></i></a>
-      <a href="#"><i data-feather="facebook"></i></a>
-    </div>
 
-    <div class="links">
-      <a href="#home">Home</a>
-      <a href="#about">Tentang Kami</a>
-      <a href="#menu">Menu</a>
-      <a href="#contact">Kontak</a>
-    </div>
-
-    <div class="credit">
-      <p>Created by <a href="https://wa.me/+6281268477296">RadentaGS</a>. | &copy; <?php echo date('Y')?>.</p>
-    </div>
-  </footer>
-  <!-- Footer end -->
 
   <!-- Modal Box Item Detail start -->
   <div class="modal" id="item-detail-modal">
@@ -361,15 +256,4 @@
     </div>
   </div>
   <!-- Modal Box Item Detail end -->
-
-  <!-- Feather Icons -->
-  <script>
-    feather.replace()
-    
-  </script>
-
-  <!-- My Javascript -->
-  <script src="js/script.js"></script>
-</body>
-
-</html>
+  @endsection

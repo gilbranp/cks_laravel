@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use App\Models\User;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
@@ -11,6 +12,8 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\KemasanController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\DashboardController;
+use App\Models\Kategori;
+use App\Models\Ukm;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/laporan',LaporanController::class);
     Route::resource('/artikel',ArtikelController::class);
     Route::get('/logout',[LoginController::class,'logout']);
+    Route::post('/kategoriukm',[KategoriController::class,'store']);
 });
 
 Route::middleware(['guest'])->group(function (){
@@ -43,4 +47,22 @@ Route::get('/',[FrontController::class,'index']);
 Route::get('/email', function () {
     Mail::to('hosting.gilbranid@gmail.com')->send(new WelcomeMail());
     return new WelcomeMail();
+});
+
+Route::get('ukm/{ukm:slug}', function (Ukm $ukm) {
+    return view('frontend.ukm.index',[
+        'title' => $ukm->nama,
+        'deskripsi' => $ukm->deskripsi,
+        'foto' => $ukm->foto,
+        'url' => $ukm->url,
+        
+    ]);
+});
+
+Route::get('/kategori/{kategori:slug}',function(Kategori $kategori){
+    return view('frontend.kategori',[
+        'title' => $kategori->nama,
+        'ukm' => $kategori->ukm,
+        'kategori' => $kategori->nama
+    ]);
 });

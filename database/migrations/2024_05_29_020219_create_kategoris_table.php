@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ukms', function (Blueprint $table) {
+        Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kategori_id');
+            $table->string('nama')->unique();
             $table->string('slug')->unique();
-            $table->string('nama');
-            $table->string('url');
-            $table->string('deskripsi');
-            $table->date('tanggal');
             $table->string('foto');
+            
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ukms');
+        Schema::dropIfExists('kategoris');
     }
 };

@@ -10,9 +10,15 @@ class Ukm extends Model
     use HasFactory;
     protected $fillable = [
         'nama',
+        'kategori_id',
+        'slug',
         'url',
         'deskripsi',
         'tanggal',
         'foto'
     ];
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
 }

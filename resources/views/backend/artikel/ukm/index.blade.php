@@ -148,7 +148,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Nama Produk</th>
                                     {{-- <th scope="col">Username</th> --}}
-                                    <th scope="col">Link Wa</th>
+                                    {{-- <th scope="col">Link Wa</th> --}}
                                     <th scope="col">Deskripsi</th>
                                     {{-- <th scope="col">Kategori</th> --}}
                                     <th scope="col">Tanggal</th>
@@ -161,8 +161,8 @@
                                 @foreach($artikel as $artikels)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $artikels->nama }}</td>
-                                    <td>{{ $artikels->url }}</td>
+                                    <td class="text-break">{{ $artikels->nama }}</td>
+                                    {{-- <td class="text-break">{{ $artikels->url }}</td> --}}
                                     <td class="text-break">{{ $artikels->deskripsi }}</td>
                                     {{-- <td>{{ $artikels->kategori->nama }}</td> --}}
                                     <td class="text-break">{{ $artikels->tanggal }}</td>
@@ -194,17 +194,6 @@
                                                 </button>
                                             </form>
                                         </div>
-            
-                                        {{-- <div class="btn-group">
-                                        <form action="{{ route('datauser.destroy', $users->id) }}" method="POST" type="button"
-                                        class="btn btn-danger p-0 mr-2" onsubmit="return confirm('Yakin ingin menghapus?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger m-0"><i class="fa fa-trash"></i></button>
-                                        </form>
-                    </div>
-                    --}}
-            
                     </td>
                     </tr>
                     @endforeach
@@ -218,5 +207,5 @@
                 </div>
             </div>
   
-            <br><br><br><br><br><br><br>
+            
 @endsection

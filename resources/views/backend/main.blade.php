@@ -29,13 +29,37 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 20 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
+  <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .header {
+        background: #4CAF50;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+    .content {
+        flex: 1; /* Konten akan mengambil ruang yang tersisa */
+        overflow-y: auto; /* Scroll secara vertikal jika konten melebihi tinggi */
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    .footer {
+        background: #ddd;
+        color: black;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
 </head>
 
 <body>
@@ -228,7 +252,7 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link {{ ($title ==="Data UKM" || $title  ==="Data Sahabat Kemasan") ? '' : 'collapsed' }}" href="/artikel">
+        <a class="nav-link {{ ($title ==="Data UKM" || $title  ==="Data Sahabat Kemasan" || $title === "Tambah Kategori") ? '' : 'collapsed' }}" href="/artikel">
           <i class="bi bi-journal-text"></i>
           <span>Artikel</span>
         </a>

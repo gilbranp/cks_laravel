@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,7 +14,10 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        $kategori = Kategori::all();
+        $title = 'Tambah Kategori';
+        $users = User::find(auth()->user()->id);
+        return view('backend.artikel.ukm.kategori.index',compact('kategori','title','users'));
     }
 
     /**

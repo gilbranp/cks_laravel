@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/laporan',LaporanController::class);
     Route::resource('/artikel',ArtikelController::class);
     Route::get('/logout',[LoginController::class,'logout']);
-    Route::post('/kategoriukm',[KategoriController::class,'store']);
+    Route::resource('/kategoriukm',KategoriController::class);
 });
 
 Route::middleware(['guest'])->group(function (){

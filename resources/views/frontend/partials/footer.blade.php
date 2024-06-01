@@ -7,14 +7,14 @@
     </div>
 
     <div class="links">
-      <a href="#home">Home</a>
-      <a href="#about">Tentang Kami</a>
-      <a href="#menu">Menu</a>
-      <a href="#contact">Kontak</a>
+      <a href="/#home">Home</a>
+      <a href="/#about">Tentang Kami</a>
+      <a href="/#menu">Menu</a>
+      <a href="/#contact">Kontak</a>
     </div>
 
     <div class="credit">
-      <p>Created by <a href="https://wa.me/+6281268477296">RadentaGS</a>. | &copy; <?php echo date('Y')?>.</p>
+      <p>Created by <a href="https://wa.me/+6281268477296">GilbranID</a>. | &copy; <?php echo date('Y')?>.</p>
     </div>
   </footer>
   <!-- Footer end -->

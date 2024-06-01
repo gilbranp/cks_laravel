@@ -89,9 +89,9 @@
               </div>
 
               <div class="row">
-                <div class="modal-footer">
+                {{-- <div class="modal-footer">
                   <a href="galeri.php" class="btn btn-primary">Galeri Kegiatan CKS</a>
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>

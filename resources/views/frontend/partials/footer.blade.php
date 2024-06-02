@@ -14,7 +14,7 @@
     </div>
 
     <div class="credit">
-      <p>Created by <a href="https://wa.me/+6281268477296">GilbranID</a>. | &copy; <?php echo date('Y')?>.</p>
+      <p>Created by <a href="https://instagram.com/gilbran_id">GilbranID</a>. | &copy; <?php echo date('Y')?>.</p>
     </div>
   </footer>
   <!-- Footer end -->

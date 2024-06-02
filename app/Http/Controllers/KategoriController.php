@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Kemasan;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class KategoriController extends Controller
@@ -15,7 +17,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $title = 'Tambah Kategori';
+        $title = 'Kategori UKM';
         $users = User::find(auth()->user()->id);
         return view('backend.artikel.ukm.kategori.index',compact('kategori','title','users'));
     }
@@ -34,7 +36,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        
+
         if ($image = $request->file('foto')) {
             $destinationPath = public_path('images/kategoriukm/');
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -44,14 +46,22 @@ class KategoriController extends Controller
                 $input['foto'] = $profileImage;
             } else {
                 // Jika pemindahan gagal, kembalikan user ke form dengan pesan error
-                return back()->with('error', 'Gagal menyimpan gambar.');
+                return back()->withInput()->with('error', 'Gagal menyimpan gambar.');
             }
         } else {
             unset($input['foto']);
         }
 
-        Kategori::create($input);
-        return redirect()->route('artikel.index')->with('sukses', 'Data berhasil ditambahkan');
+        try {
+            Kategori::create($input);
+            return redirect()->route('kategoriukm.index')->with('sukses', 'Data berhasil ditambahkan');
+        } catch (\Exception $e) {
+            // Jika penyimpanan ke database gagal, hapus file gambar yang sudah diupload
+            if (isset($input['foto']) && file_exists($destinationPath . $input['foto'])) {
+                unlink($destinationPath . $input['foto']);
+            }
+            return back()->withInput()->with('error', 'Gagal menambahkan data.');
+        }
     }
 
     /**
@@ -81,8 +91,31 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        try {
+            $kategori = Kategori::findOrFail($id); // Pastikan artikel ditemukan
+    
+            $gambarPath = public_path('images/kategoriukm/' . $kategori->foto);
+    
+            if (is_file($gambarPath)) {
+                if (file_exists($gambarPath)) {
+                    unlink($gambarPath);
+                    Log::info('File berhasil dihapus: ' . $gambarPath);
+                } else {
+                    Log::warning('File tidak ditemukan: ' . $gambarPath);
+                }
+            } else {
+                Log::warning('Path bukan file: ' . $gambarPath);
+            }
+    
+            $kategori->delete();
+            Log::info('Kategori berhasil dihapus: ID ' . $id);
+    
+            return redirect()->route('kategoriukm.index')->with('sukses', 'Data berhasil dihapus!');
+        } catch (\Exception $e) {
+            Log::error('Error menghapus data: ' . $e->getMessage());
+            return redirect()->route('kategoriukm.index')->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
     }
 }

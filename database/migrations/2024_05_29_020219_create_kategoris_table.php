@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama')->unique();
             $table->string('slug')->unique();
             $table->string('foto');
+            $table->string('deskripsi');
             
             $table->timestamps();
         });

@@ -83,24 +83,33 @@ class KemasanController extends Controller
     public function update(Request $request, string $id)
     {
         $artikel = Kemasan::find($id);
-    
+
         $input = $request->all();
+        
+        // Cek apakah ada file foto yang dikirimkan dalam request
         if ($image = $request->file('foto')) {
+            // Hapus foto lama jika ada
+            if ($artikel->foto) {
+                $oldImagePath = public_path('images/kemasan/') . $artikel->foto;
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+        
+            // Simpan foto baru
             $destinationPath = 'images/kemasan/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['foto'] = "$profileImage";
-        }
-        else{
+            $input['foto'] = $profileImage;
+        } else {
             unset($input['foto']);
         }
-
+        
         // Update data artikel dari request
-        // $artikel->update($request->except('imgpembina'));
         $artikel->update($input);
-        // artikel::create($input);
-
+        
         return redirect()->route('sahabat.index')->with('sukses', 'Data berhasil diperbarui');
+        
     }
 
     /**

@@ -117,7 +117,7 @@
         </div>
         
         <div class="product-image">
-          <img class="img-fluid" style="width: 100%; 400: auto; object-fit: cover;" src="{{ asset('images/kategoriukm/'. $kategoris->foto) }}" alt="Product 1">
+          <img class="img-fluid" style="width: 100%; height: 400; object-fit: cover;" src="{{ asset('images/kategoriukm/'. $kategoris->foto) }}" alt="Product 1">
         </div>
         
         <div class="product-content">
@@ -155,7 +155,7 @@
           </div>
           
           <div class="product-image">
-            <img class="img-fluid" style="width: 100%; height: auto; object-fit: cover;" src="images/kemasan/{{ $kemasans->foto }}" alt="Product">
+            <img class="img-fluid" style="width: 100%; height: 400; object-fit: cover;" src="images/kemasan/{{ $kemasans->foto }}" alt="Product">
           </div>
           
           <div class="product-content">

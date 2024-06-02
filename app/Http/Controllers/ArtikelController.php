@@ -43,37 +43,45 @@ class ArtikelController extends Controller
     
     $input = $request->all();
     $kategoriSlug = Kategori::where('id', $input['kategori_id'])->pluck('slug')->first();
-    
+
     // Buat slug awal berdasarkan nama UKM atau atribut lain yang unik
     $baseSlug = Str::slug($input['nama'] . '-' . $kategoriSlug);
     $slug = $baseSlug;
     $counter = 1;
-    
+
     // Cek apakah slug sudah ada, jika ya tambahkan penanda unik
     while (Ukm::where('slug', $slug)->exists()) {
         $slug = $baseSlug . '-' . $counter;
         $counter++;
     }
-    
+
     $input['slug'] = $slug;
-    
+
     if ($image = $request->file('foto')) {
         $destinationPath = public_path('images/ukm/');
         $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-    
+
         // Coba pindahkan file dan cek hasilnya
         if ($image->move($destinationPath, $profileImage)) {
             $input['foto'] = $profileImage;
         } else {
             // Jika pemindahan gagal, kembalikan user ke form dengan pesan error
-            return back()->with('error', 'Gagal menyimpan gambar.');
+            return back()->withInput()->with('error', 'Gagal menyimpan gambar.');
         }
     } else {
         unset($input['foto']);
     }
-    
-    Ukm::create($input);
-    return redirect()->route('artikel.index')->with('sukses', 'Data berhasil ditambahkan');
+
+    try {
+        Ukm::create($input);
+        return redirect()->route('artikel.index')->with('sukses', 'Data berhasil ditambahkan');
+    } catch (\Exception $e) {
+        // Jika penyimpanan ke database gagal, hapus file gambar yang sudah diupload
+        if (isset($input['foto']) && file_exists($destinationPath . $input['foto'])) {
+            unlink($destinationPath . $input['foto']);
+        }
+        return back()->withInput()->with('error', 'Gagal menambahkan data.');
+    }
 }
 
     

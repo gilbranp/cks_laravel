@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/artikel',ArtikelController::class);
     Route::get('/logout',[LoginController::class,'logout']);
     Route::resource('/kategoriukm',KategoriController::class);
+    // Route::post('kategoriukm',[KategoriController::class,'index']);
 });
 
 Route::middleware(['guest'])->group(function (){

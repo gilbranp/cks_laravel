@@ -59,81 +59,84 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="datatable">
+<div class="container mt-5">
+    @if (Session::has('sukses'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('sukses') }}
+    </div>
+    @endif
 
-                @if (Session::has('sukses'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('sukses') }}
-                </div>
-                @endif
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nama Produk</th>
-                        {{-- <th scope="col">Username</th> --}}
-                        <th scope="col">Link Wa</th>
-                        <th scope="col">Deskripsi</th>
-                        <th scope="col">Tanggal</th>
-                        {{-- <th scope="col">Tanggal Ditambahkan</th> --}}
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if ($artikel->count() > 0)
-                    @foreach($artikel as $artikels)
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $artikels->nama }}</td>
-                        <td>{{ $artikels->url }}</td>
-                        <td>{{ $artikels->deskripsi }}</td>
-                        <td>{{ $artikels->tanggal }}</td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a data-id="" href="{{ route('sahabat.show',$artikels->id) }}" class="btn btn-sm btn-info text-white show-modal mr-2"
-                                    data-toggle="modal" data-target="#show_user">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </a>
-                            </div>
-                            <div class="btn-group">
-                                <a data-id="" href="{{ route('sahabat.edit',$artikels->id) }}" class="btn btn-sm btn-info text-white show-modal mr-2"
-                                    data-toggle="modal" data-target="#show_user">
-                                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div class="btn-group">
-                                <form action="{{ route('sahabat.destroy',$artikels->id) }}" onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
-                                    @csrf
-                                    @method( 'DELETE')
-                                    <button class="btn btn-sm btn-danger text-white show-modal mr-2">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-
-                            {{-- <div class="btn-group">
-                                <form action="" method="POST" type="button" class="btn btn-danger p-0 mr-2"
-                                    onsubmit="return confirm('Yakin ingin menghapus?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger m-0"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div> --}}
-
-
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    <tr>
-                        <td class="text-center" colspan="7">Tidak Ada Data Yang Tersimpan</td>
-                    </tr>
-                    @endif
-                </tbody>
-            </table>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="datatable">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama Produk</th>
+                            <th scope="col">Link Wa</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($artikel->count() > 0)
+                        @foreach($artikel as $artikels)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $artikels->nama }}</td>
+                            <td>{{ $artikels->url }}</td>
+                            <td>{{ $artikels->deskripsi }}</td>
+                            <td>{{ $artikels->tanggal }}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a data-id="" href="{{ route('sahabat.show', $artikels->id) }}" class="btn btn-sm btn-info text-white show-modal mr-2"
+                                        data-toggle="modal" data-target="#show_user">
+                                        <i class="fas fa-fw fa-search"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a data-id="" href="{{ route('sahabat.edit', $artikels->id) }}" class="btn btn-sm btn-info text-white show-modal mr-2"
+                                        data-toggle="modal" data-target="#show_user">
+                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <form action="{{ route('sahabat.destroy', $artikels->id) }}" onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger text-white show-modal mr-2">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td class="text-center" colspan="6">Tidak Ada Data Yang Tersimpan</td>
+                        </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable({
+            "paging": true,
+            "searching": true,
+            "lengthChange": true,
+            "pageLength": 10
+        });
+    });
+</script>
 
     @endsection

@@ -137,86 +137,86 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="datatable">
+<div class="container mt-5">
+    @if (Session::has('sukses'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('sukses') }}
+    </div>
+    @endif
 
-                @if (Session::has('sukses'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('sukses') }}
-                </div>
-                @endif
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nama Lengkap</th>
-                        {{-- <th scope="col">Username</th> --}}
-                        <th scope="col">Email</th>
-                        <th scope="col">Alamat</th>
-                        <th scope="col">Posisi</th>
-                        {{-- <th scope="col">Tanggal Ditambahkan</th> --}}
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if ($user->count() > 0)
-                    @foreach($user as $users)
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $users->nama }}</td>
-                        <td>{{ $users->email }}</td>
-                        <td>{{ $users->alamat }}</td>
-                        <td>{{ $users->posisi }}</td>
-                        
-                        {{-- <td>{{ $user->created_at }}</td> --}}
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a data-id="" href="{{ route('anggota.show',$users->id) }}"
-                                    class="btn btn-sm btn-info text-white show-modal mr-2" data-toggle="modal"
-                                    data-target="#show_user">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </a>
-                            </div>
-                            <div class="btn-group">
-                                <a data-id="" href="{{ route('anggota.edit',$users->id) }}"
-                                    class="btn btn-sm btn-info text-white show-modal mr-2" data-toggle="modal"
-                                    data-target="#show_user">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div class="btn-group">
-                                <form action="{{ route('anggota.destroy',$users->id) }}"
-                                    onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
-                                    @csrf
-                                    @method( 'DELETE')
-                                    <button class="btn btn-sm btn-danger text-white show-modal mr-2">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-
-                            {{-- <div class="btn-group">
-                            <form action="{{ route('datauser.destroy', $users->id) }}" method="POST" type="button"
-                            class="btn btn-danger p-0 mr-2" onsubmit="return confirm('Yakin ingin menghapus?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger m-0"><i class="fa fa-trash"></i></button>
-                            </form>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="datatable">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama Lengkap</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">Posisi</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($user->count() > 0)
+                        @foreach($user as $users)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $users->nama }}</td>
+                            <td>{{ $users->email }}</td>
+                            <td>{{ $users->alamat }}</td>
+                            <td>{{ $users->posisi }}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a data-id="" href="{{ route('anggota.show',$users->id) }}"
+                                        class="btn btn-sm btn-info text-white show-modal mr-2" data-toggle="modal"
+                                        data-target="#show_user">
+                                        <i class="fas fa-fw fa-search"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a data-id="" href="{{ route('anggota.edit',$users->id) }}"
+                                        class="btn btn-sm btn-info text-white show-modal mr-2" data-toggle="modal"
+                                        data-target="#show_user">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <form action="{{ route('anggota.destroy',$users->id) }}"
+                                        onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
+                                        @csrf
+                                        @method( 'DELETE')
+                                        <button class="btn btn-sm btn-danger text-white show-modal mr-2">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td class="text-center" colspan="6">Tidak Ada Data Yang Tersimpan</td>
+                        </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
         </div>
-        --}}
-
-        </td>
-        </tr>
-        @endforeach
-        @else
-        <tr>
-            <td class="text-center" colspan="7">Tidak Ada Data Yang Tersimpan</td>
-        </tr>
-        @endif
-        </tbody>
-        </table>
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable({
+            "paging": true,
+            "searching": true,
+            "lengthChange": true,
+            "pageLength": 10
+        });
+    });
+</script>
 @endsection

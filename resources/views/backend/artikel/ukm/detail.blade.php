@@ -23,6 +23,10 @@
             <input type="text" name="tempat" class="form-control" value="{{ $artikel->deskripsi }}" readonly disabled>
         </div>
         <div class="form-group">
+            <label>Kategori</label>
+            <input type="text" name="kategori_id" class="form-control" value="{{ $artikel->kategori->nama }}" readonly disabled>
+        </div>
+        <div class="form-group">
             <label>Tanggal ditambahkan</label>
             <input type="text" name="url" class="form-control" value="{{ $artikel->tanggal }}" readonly disabled>
         </div>

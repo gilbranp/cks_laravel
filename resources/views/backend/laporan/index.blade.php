@@ -138,89 +138,106 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="datatable">
+<div class="container mt-5">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
-                @if (Session::has('sukses'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('sukses') }}
-                </div>
-                @endif
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nama Anggota</th>
-                        {{-- <th scope="col">Username</th> --}}
-                        <th scope="col">Alamat</th>
-                        <th scope="col">Simpanan Pokok</th>
-                        <th scope="col">Simpanan Sukarela </th>
-                        <th scope="col">Simpanan Wajib </th>
-                        {{-- <th scope="col">Tanggal Ditambahkan</th> --}}
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{-- @if ($user->count() > 0)
-                    @foreach($user as $users) --}}
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>den</td>
-                        <td>02-20-2024</td>
-                        <td>kerjasama cks</td>
-                        <td>20000</td>
-                        <td>0</td>
-                        
-                        {{-- <td>{{ $user->created_at }}</td> --}}
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a data-id="" href=""
-                                    class="btn btn-sm btn-info text-white show-modal mr-2" data-toggle="modal"
-                                    data-target="#show_user">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </a>
-                            </div>
-                            <div class="btn-group">
-                                <a data-id="" href=""
-                                    class="btn btn-sm btn-info text-white show-modal mr-2" data-toggle="modal"
-                                    data-target="#show_user">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div class="btn-group">
-                                <form action=""
-                                    onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
-                                    @csrf
-                                    @method( 'DELETE')
-                                    <button class="btn btn-sm btn-danger text-white show-modal mr-2">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
 
-                            {{-- <div class="btn-group">
-                            <form action="{{ route('datauser.destroy', $users->id) }}" method="POST" type="button"
-                            class="btn btn-danger p-0 mr-2" onsubmit="return confirm('Yakin ingin menghapus?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger m-0"><i class="fa fa-trash"></i></button>
-                            </form>
+    @if (session('sukses'))
+    <div class="alert alert-success">
+        {{ session('sukses') }}
+    </div>
+    @endif
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="datatable">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama Anggota</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">Simpanan Pokok</th>
+                            <th scope="col">Simpanan Sukarela</th>
+                            <th scope="col">Simpanan Wajib</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- @if ($artikel->count() > 0)
+                        @foreach($artikel as $artikels) --}}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td class="text-break">yy</td>
+                            <td class="text-break">o</td>
+                            <td class="text-break">pp</td>
+                            <td class="text-break">pp</td>
+                            <td class="text-break">pp</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a href=""
+                                        class="btn btn-sm btn-info text-white show-modal mr-2">
+                                        <i class="fas fa-fw fa-search"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a href=""
+                                        class="btn btn-sm btn-info text-white show-modal mr-2">
+                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <form action=""
+                                        onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger text-white show-modal mr-2">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {{-- @endforeach
+                        @else
+                        <tr>
+                            <td class="text-center" colspan="5">Tidak Ada Data Yang Tersimpan</td>
+                        </tr>
+                        @endif --}}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        --}}
-
-        </td>
-        </tr>
-        {{-- @endforeach
-        @else
-        <tr>
-            <td class="text-center" colspan="7">Tidak Ada Data Yang Tersimpan</td>
-        </tr>
-        @endif --}}
-        </tbody>
-        </table>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            "paging": true,
+            "searching": true,
+            "lengthChange": false,
+            "pageLength": 10
+        });
+    });
+
+</script>
 
 
 @endsection

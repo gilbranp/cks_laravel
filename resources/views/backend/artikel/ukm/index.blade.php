@@ -7,14 +7,14 @@
             Sahabat Kemasan
         </button></a>
     <a href="{{ route('kategoriukm.index') }}"><button type="button" class="btn btn-success">
-        Kategori UKM
-    </button></a>
+            Kategori UKM
+        </button></a>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         UKM
     </button>
 
     {{-- Modal Kategori --}}
-   
+
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,23 +101,23 @@
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
 
-@if (session('error'))
+    @if (session('error'))
     <div class="alert alert-danger">
         {{ session('error') }}
     </div>
-@endif
+    @endif
 
-@if (session('sukses'))
+    @if (session('sukses'))
     <div class="alert alert-success">
         {{ session('sukses') }}
     </div>
-@endif
+    @endif
 
 
     <div class="row">

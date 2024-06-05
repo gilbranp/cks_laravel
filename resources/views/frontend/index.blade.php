@@ -188,7 +188,7 @@
 
     <div class="row">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.629232762556!2d109.69148847476183!3d-7.395375692614486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7aa97cb45a96ab%3A0x2098e9d15788dfdc!2sSahabat%20Kemasan!5e0!3m2!1sid!2sid!4v1705739296030!5m2!1sid!2sid"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13003.892682710402!2d109.68739928815171!3d-7.400286735833128!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7aa93d6530c227%3A0x6614d10df186e4ed!2sGedung%20Dekranasda!5e0!3m2!1sid!2sid!4v1717491406291!5m2!1sid!2sid"
         width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
 

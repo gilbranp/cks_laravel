@@ -16,7 +16,7 @@
         <hr class="dropdown-divider">
       </li>
 
-      <li>
+      {{-- <li>
         <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
           <i class="bi bi-person"></i>
           <span>My Profile</span>
@@ -34,7 +34,7 @@
       </li>
       <li>
         <hr class="dropdown-divider">
-      </li>
+      </li> --}}
 
       <li>
         <a class="dropdown-item d-flex align-items-center" href="https://wa.me/+6281268477296" target="_blank">

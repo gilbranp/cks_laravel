@@ -5,35 +5,13 @@
     <!-- <div class="mask-container"> -->
     <div>
       <main class="content">
-        <marquee><h1>Selamat datang</h1></marquee>
+        <marquee><h1>SELAMAT DATANG</h1></marquee>
         {{-- <h1>Selamat datang <br> Koperasi Pemasaran <br><span>CKS Banjarnegara</span></h1> --}}
         <!-- <p style="color: aliceblue;">Koperasi Pemasaran Cipta Karya Sejahtera</p> -->
       </main>
     </div>
   </section>
-  <!-- Hero Section end -->
-
-  <!-- About Section start -->
-  <!-- <section id="about" class="about">
-    <h2><span>Tentang</span> Kami</h2>
-
-    <div class="row">
-      <div class="about-img">
-        <img src="img/tentangkami.png" alt="Tentang Kami">
-      </div>
-      <div class="content">
-        <h3>Koperasi Pemasaran Cipta Karya Sejahtera</h3>
-        <p>adalah salah satu Koperasi Primer di Kabupaten Banjarnegara. Koperasi ini didirikan pada tanggal  16 Februari 2021 
-          dengan Badan Hukum Nomor AHU 0008928.AH.01.26.TAHUN 2021 dengan nama awal KOPERASI PEMASARAN CIPTA KARYA SEJAHTERA.
-</p><p>Koperasi Pemasaran Cipta Karya Sejahtera telah menempatkan dirinya sebagai salah satu pelaku bisnis yang berwatak sosial,
-   saling bekerjasama dan saling meningkatkan kualitas diri dengan motto “Mandiri Bersama, Sukses Bersama dan Sejahtera Bersama Anggota 
-   ”Dari Awal berdiri sampai sekarang Koperasi Pemasaran Cipta Karya Sejahtera beraktivitas pada kemandirian yang Hakiki, menuju sehat 
-   Organisasi, sehat Usaha dan sehat Manajemen. Secara perlahan tetapi pasti melangkahkan kakinya berpijak pada Kesejahteraan semua
-    anggota-anggotanya, saling berbagi dan selalu membantu anggota baik dari segi Organisasi, usaha maupun permodalan dengan azas kekeluargaan.⁠⁠
-</p>
-      </div>
-    </div>
-  </section> -->
+ 
 <br> <br>
   <section id="about" class="about-mf sect-pt4 route">
     <div class="container">
@@ -104,7 +82,7 @@
   <!-- Menu Section start -->
   <section class="products" id="menu">
     <h2 style="color: #001B79;"><span>Produk</span> UKM</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo unde eum, ab fuga possimus iste.</p>
+    <p>Kategori Produk yang tersedia di Koperasi CKS Banjarnegara</p>
 
     <div class="row">
 
@@ -143,7 +121,7 @@
   <!-- Products Section start -->
   <section class="products" id="products">
     <h2 style="color: #001B79;"><span>Produk</span> Sahabat Kemasan</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo unde eum, ab fuga possimus iste.</p>
+    <p>Produk yang tersedia di Sahabat Kemasan Banjarnegara</p>
     <div class="row">
 
       {{-- konten --}}
@@ -184,7 +162,7 @@
   <!-- Contact Section start -->
   <section id="contact" class="contact">
     <h2><span>Kontak</span> Kami</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, provident.</p>
+    <p>Silahkan bila ada kendala maupun pertanyaan bisa hubungi kontak dibawah ini</p>
 
     <div class="row">
       <iframe
@@ -192,27 +170,48 @@
         width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-      <form action="/mail" method="post">
-        <div class="input-group">
-          <i data-feather="user"></i>
-          <input type="text" name="nama" placeholder="Nama" required>
-        </div>
-        <div class="input-group">
-          <i data-feather="mail"></i>
-          <input type="email" name="email" placeholder="Email" required>
-        </div>
-        <div class="input-group">
-          <i data-feather="phone"></i>
-          <input type="tel" name="no_hp" placeholder="No Hp" pattern="[0-9]{12,}"
-            title="Masukkan minimal 12 digit angka" required>
-        </div>
-
-        <div class="input-group">
-          <i data-feather="message-circle"></i>
-          <input type="text" name="pesanku" placeholder="Masukkan Pesan Anda" required>
-        </div>
-        <button type="submit" class="btn">Kirim Pesan</button>
+        <form id="contactForm">
+          <div class="input-group">
+            <i data-feather="user"></i>
+            <input type="text" name="nama" placeholder="Nama" required>
+          </div>
+          <div class="input-group">
+            <i data-feather="mail"></i>
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+          <div class="input-group">
+            <i data-feather="phone"></i>
+            <input type="tel" name="no_hp" placeholder="No Hp" pattern="[0-9]{12,}"
+              title="Masukkan minimal 12 digit angka" required>
+          </div>
+          <div class="input-group">
+            <i data-feather="message-circle"></i>
+            <input type="text" name="pesanku" placeholder="Masukkan Pesan Anda" required>
+          </div>
+          <button type="submit" class="btn">Kirim Pesan</button>
       </form>
+  
+      <script>
+          document.getElementById('contactForm').addEventListener('submit', function(event) {
+              event.preventDefault(); // Mencegah form dikirim secara default
+  
+              // Ambil nilai dari form
+              var nama = document.querySelector('input[name="nama"]').value;
+              var email = document.querySelector('input[name="email"]').value;
+              var no_hp = document.querySelector('input[name="no_hp"]').value;
+              var pesan = document.querySelector('input[name="pesanku"]').value;
+  
+              // Buat URL WhatsApp
+              var waNumber = "081268477296";
+              var waUrl = `https://wa.me/${waNumber}?text=Nama: ${encodeURIComponent(nama)}%0AEmail: ${encodeURIComponent(email)}%0ANo HP: ${encodeURIComponent(no_hp)}%0APesan: ${encodeURIComponent(pesan)}`;
+  
+              // Redirect ke URL WhatsApp
+              window.location.href = waUrl;
+          });
+  
+          // Menginisialisasi feather icons
+          feather.replace();
+      </script>
 
     </div>
     <br>

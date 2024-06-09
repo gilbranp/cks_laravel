@@ -11,11 +11,24 @@ class LaporanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Laporan Keuangan';
         $users = User::find(auth()->user()->id);
-        return view('backend.laporan.index',compact('title','users'));
+        // $laporan = Laporan::all();
+
+        $query = Laporan::query();
+
+    if ($request->filled('bulan') && $request->filled('tahun')) {
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $query->whereMonth('tanggal', $bulan)
+              ->whereYear('tanggal', $tahun);
+    }
+
+    $laporan = $query->get();
+
+        return view('backend.laporan.index',compact('title','users','laporan'));
     }
 
     /**
@@ -31,7 +44,17 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama' => 'required',
+            'pokok' => 'required',
+            'sukarela'=> 'required',
+            'wajib'=> 'required',
+            'deskripsi' => 'nullable',
+            'tanggal' => 'required'
+        ]);
+
+        Laporan::create($validateData);
+        return redirect()->route('laporan.index')->with('sukses','Data berhasil ditambah');
     }
 
     /**
@@ -61,8 +84,10 @@ class LaporanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Laporan $laporan)
+    public function destroy(string $id)
     {
-        //
+        $laporan = Laporan::find($id);
+        $laporan->delete();
+        return redirect()->route('laporan.index')->with('sukses','Data berhasil dihapus!');
     }
 }

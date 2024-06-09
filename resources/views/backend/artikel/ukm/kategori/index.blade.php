@@ -124,7 +124,7 @@
                         @endforeach
                         @else
                         <tr>
-                            <td class="text-center" colspan="5">Tidak Ada Data Yang Tersimpan</td>
+                            <td class="text-center" colspan="6">Tidak Ada Data Yang Tersimpan</td>
                         </tr>
                         @endif
                     </tbody>

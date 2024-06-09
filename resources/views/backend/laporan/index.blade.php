@@ -17,18 +17,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah data anggota</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah data Laporan</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
-                    <form action="{{ route('anggota.store') }}" method="post">
+                    <form action="{{ route('laporan.store') }}" method="post">
                         @csrf
                         <div class="form-floating">
                             <input type="text" name="nama"
                                 class="form-control @error('nama') is-invalid @enderror" id="nama"
                                 placeholder="Masukka Nama" required value="{{ old('nama') }}">
-                            <label for="nama">Nama Langkap</label>
+                            <label for="nama">Nama Anggota</label>
                             @error('nama')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -36,99 +36,70 @@
                             @enderror
 
                         </div>
-                        {{-- <div class="form-floating">
-                            <input type="text" name="username"
-                                class="form-control @error('username') is-invalid @enderror" id="username"
-                                placeholder="Username" required value="{{ old('username') }}">
-                            <label for="username">Username</label>
-                            @error('username')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-
-                        </div> --}}
+                       
                         <div class="form-floating">
-                            <input type="email" name="email"
-                                class="form-control @error('email') is-invalid @enderror" id="email"
-                                placeholder="name@example.com" required value="{{ old('email') }}">
-                            <label for="email">Email address</label>
-                            @error('email')
+                            <input type="number" name="pokok"
+                                class="form-control @error('pokok') is-invalid @enderror" id="pokok"
+                                placeholder="Setor simpanan pokok" required value="{{ old('pokok') }}">
+                            <label for="pokok">Simpanan Pokok Rp :</label>
+                            @error('pokok')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                         <div class="form-floating">
-                            <input type="text" name="alamat"
-                                class="form-control @error('alamat') is-invalid @enderror" id="alamat"
-                                placeholder="Masukkan alamat" required value="{{ old('alamat') }}">
-                            <label for="alamat">Alamat</label>
-                            @error('alamat')
+                            <input type="number" name="sukarela"
+                                class="form-control @error('sukarela') is-invalid @enderror" id="sukarela"
+                                placeholder="Setor simpanan suka rela" required value="{{ old('sukarela') }}">
+                            <label for="sukarela">Simpanan Sukarela Rp :</label>
+                            @error('sukarela')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                         <div class="form-floating">
-                            <input type="text" name="posisi"
-                                class="form-control @error('posisi') is-invalid @enderror" id="posisi"
-                                placeholder="ex:Ketua,TimIT,dll" required value="{{ old('posisi') }}">
-                            <label for="posisi">Posisi</label>
-                            @error('posisi')
+                            <input type="number" name="wajib"
+                                class="form-control @error('wajib') is-invalid @enderror" id="wajib"
+                                placeholder="Setor simpanan wajib" required value="{{ old('wajib') }}">
+                            <label for="wajib">Simpanan Wajib Rp :</label>
+                            @error('wajib')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
+                       
                         <div class="form-floating">
-                            <input type="password" name="password"
-                                class="form-control @error('password') is-invalid @enderror" id="password"
-                               placeholder="Masukkan password" required value="{{ old('password') }}">
-                            <label for="password">Password</label>
-                            @error('password')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="form-floating">
-                            <input type="deskripsi" name="deskripsi"
+                            <input type="text" name="deskripsi"
                                 class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi"
-                                placeholder="Masukkan Deskripsi" required value="{{ old('deskripsi') }}">
-                            <label for="deskripsi">Deskripsi</label>
+                                placeholder="Masukkan Deskripsi" value="{{ old('deskripsi') }}">
+                            <label for="deskripsi">Deskripsi (Optional)</label>
                             @error('deskripsi')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-                        {{-- <div class="form-floating">
-                            <input type="password" name="password"
-                                class="form-control @error('password') is-invalid @enderror" id="password"
-                                placeholder="Password" required>
-                            <label for="password">Password</label>
-                            @error('password')
+
+                        <div class="form-floating">
+                            <input type="date" name="tanggal"
+                                class="form-control @error('tanggal') is-invalid @enderror" id="tanggal"
+                               placeholder="Masukkan tanggal" required value="{{ old('tanggal') }}">
+                            <label for="tanggal">Tanggal</label>
+                            @error('tanggal')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
-                        </div> --}}
-                        {{-- <div class="dropdown-center">
-                            <select name="level" class="dropdown-toggle w-100" required>
-                                <option value="" disabled selected>== SILAHKAN PILIH SALAH SATU ==</option>
-                                <option value="administrator">Administrator</option>
-                                <option value="operator">Operator</option>
-                                <option value="kepalagudang">Kepala Gudang</option>
-                            </select>
-                        </div> --}}
+                        </div>
+                      
                         <button class="btn btn-primary w-100 py-2" type="submit">Tambahkan</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    {{-- <input type="submit" value="Tambah" name="simpan" class="btn btn-primary"> --}}
-
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    
                 </div>
                 </form>
 
@@ -164,44 +135,69 @@
 
     <div class="row">
         <div class="col-lg-12">
+            <form method="GET" action="{{ route('laporan.index') }}">
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInput">Bulan</label>
+                        <select class="form-control mb-2" name="bulan" id="bulan">
+                            <option value="">Pilih Bulan</option>
+                            @for ($i = 1; $i <= 12; $i++)
+                                <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
+                                    {{ date('F', mktime(0, 0, 0, $i, 1)) }}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInput">Tahun</label>
+                        <select class="form-control mb-2" name="tahun" id="tahun">
+                            <option value="">Pilih Tahun</option>
+                            @for ($i = date('Y'); $i >= date('Y') - 10; $i--)
+                                <option value="{{ $i }}" {{ request('tahun') == $i ? 'selected' : '' }}>
+                                    {{ $i }}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-2">Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover" id="datatable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nama Anggota</th>
-                            <th scope="col">Alamat</th>
+                            {{-- <th scope="col">Alamat</th> --}}
                             <th scope="col">Simpanan Pokok</th>
                             <th scope="col">Simpanan Sukarela</th>
                             <th scope="col">Simpanan Wajib</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Tanggal</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @if ($artikel->count() > 0)
-                        @foreach($artikel as $artikels) --}}
+                        @if ($laporan->count() > 0)
+                        @foreach($laporan as $laporans)
                         <tr>
-                            <th scope="row">1</th>
-                            <td class="text-break">yy</td>
-                            <td class="text-break">o</td>
-                            <td class="text-break">pp</td>
-                            <td class="text-break">pp</td>
-                            <td class="text-break">pp</td>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td class="text-break">{{ $laporans->nama }}</td>
+                            <td class="text-break">Rp{{ $laporans->pokok }}</td>
+                            <td class="text-break">Rp{{ $laporans->sukarela }}</td>
+                            <td class="text-break">Rp{{ $laporans->wajib }}</td>
+                            <td class="text-break">{{ $laporans->deskripsi }}</td>
+                            <td class="text-break">{{ $laporans->tanggal }}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a href=""
-                                        class="btn btn-sm btn-info text-white show-modal mr-2">
-                                        <i class="fas fa-fw fa-search"></i>
-                                    </a>
-                                </div>
-                                <div class="btn-group">
-                                    <a href=""
-                                        class="btn btn-sm btn-info text-white show-modal mr-2">
-                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <div class="btn-group">
-                                    <form action=""
+                                    <form action="{{ route('laporan.destroy',$laporans->id) }}"
                                         onsubmit="return confirm('Yakin ingin menghapus?')" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -212,17 +208,19 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- @endforeach
+                        @endforeach
                         @else
                         <tr>
-                            <td class="text-center" colspan="5">Tidak Ada Data Yang Tersimpan</td>
+                            <td class="text-center" colspan="8">Tidak Ada Data Yang Tersimpan</td>
                         </tr>
-                        @endif --}}
+                        @endif
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    
+    
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

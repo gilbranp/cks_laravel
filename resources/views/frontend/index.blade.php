@@ -26,10 +26,10 @@
               </div>
 
               <div class="row">
-                <div class="col-md-4">
-                  <img src="img/ketua.jpg"
-                    class="img-fluid rounded-circle mt-4" style="width: 250px" alt="Foto Ketua">
+                <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                  <img src="img/ketua.jpg" class="img-fluid rounded-circle mt-4" style="width: 250px; height: 250px" alt="Foto Ketua">
                 </div>
+                
 
                 <div class="col-md-8 mt-4">
                   <h2>Ketua</h2>

@@ -6,11 +6,12 @@
 
 <div class="d-flex justify-content-end mb-3">
     <!-- Button trigger modal -->
+    @can('posisi-ketua')
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="fas fa-fw fa-plus"></i>
         Tambahkan Data
     </button>
-
+    @endcan
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

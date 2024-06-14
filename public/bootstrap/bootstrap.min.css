@@ -3096,13 +3096,13 @@ textarea.form-control-lg {
     background-color: var(--bs-secondary-bg)
 }
 
-.input-group {
+/* .input-group {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
     width: 100%
-}
+} */
 
 .input-group>.form-control,
 .input-group>.form-floating,

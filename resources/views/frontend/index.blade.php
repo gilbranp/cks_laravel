@@ -42,7 +42,7 @@
 
                     Dalam usianya yang ke 2 tahun Koperasi Pemasaran Cipta Karya Sejahtera telah menempatkan dirinya
                     sebagai salah satu pelaku bisnis yang berwatak sosial, saling bekerjasama dan saling meningkatkan
-                    kualitas diri dengan motto “Mandiri Bersama, Sukses Bersama dan Sejahtera Bersama Anggota ”Dari Awal
+                    kualitas diri dengan motto “Mandiri Bersama, Sukses Bersama dan Sejahtera Bersama Anggota” Dari Awal
                     berdiri sampai sekarang Koperasi Pemasaran Cipta Karya Sejahtera beraktivitas pada kemandirian yang
                     Hakiki, menuju sehat Organisasi, sehat Usaha dan sehat Manajemen. Secara perlahan tetapi pasti
                     melangkahkan kakinya berpijak pada Kesejahteraan semua anggota-anggotanya, saling berbagi dan selalu
@@ -90,7 +90,7 @@
       @foreach ($kategori as $kategoris)
       <div class="product-card">
         <div class="product-icons" id="produk1">
-          <a href="{{ $kategoris->url }}"><i data-feather="shopping-cart"></i></a>
+          {{-- <a href="{{ $kategoris->url }}"><i data-feather="shopping-cart"></i></a> --}}
            <a href="/kategori/{{ $kategoris->slug }}" id="shopping-cart-button" class="item-detail-button"><i data-feather="eye"></i></a> 
         </div>
         
@@ -181,7 +181,7 @@
           </div>
           <div class="input-group">
             <i data-feather="phone"></i>
-            <input type="tel" name="no_hp" placeholder="No Hp" pattern="[0-9]{12,}"
+            <input type="number" name="no_hp" placeholder="No Hp" pattern="[0-9]{12,}"
               title="Masukkan minimal 12 digit angka" required>
           </div>
           <div class="input-group">

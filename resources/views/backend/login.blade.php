@@ -12,6 +12,7 @@
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -61,7 +62,7 @@
 
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">Masuk  ke Akun Anda</h5>
-                    <p class="text-center small">Masukkan username & password untuk masuk</p>
+                    <p class="text-center small">Masukkan email & password untuk masuk</p>
                   </div>
                   @if (session()->has('error'))
                   <div style="text-align: center" class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -81,9 +82,27 @@
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
-                    </div>
+                      <div class="input-group">
+                          <input type="password" name="password" class="form-control" id="yourPassword" required>
+                          <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                              <i class="fa fa-eye" id="toggleIcon"></i>
+                          </button>
+                          <div class="invalid-feedback">Please enter your password!</div>
+                      </div>
+                  </div>
+                  
+                  <script>
+                      document.getElementById('togglePassword').addEventListener('click', function () {
+                          const passwordField = document.getElementById('yourPassword');
+                          const toggleIcon = document.getElementById('toggleIcon');
+                          // Toggle the type attribute
+                          const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                          passwordField.setAttribute('type', type);
+                          // Toggle the icon
+                          toggleIcon.classList.toggle('fa-eye');
+                          toggleIcon.classList.toggle('fa-eye-slash');
+                      });
+                  </script>
 
                     <div class="col-12">
                       <div class="form-check">
